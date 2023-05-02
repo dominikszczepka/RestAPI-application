@@ -11,10 +11,19 @@ namespace appRestAPI.MappingProfiles
         {
             CreateMap<OrderDto, Order>()
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => DateOnly.Parse(src.OrderDate)))
-                .ForMember(dest => dest.ShipmentDate, opt => opt.MapFrom(src => DateOnly.Parse(src.ShipmentDate!)));
+                .ForMember(dest => dest.ShipmentDate, opt =>
+                {
+                    opt.PreCondition((source, dest, ctx) => dest.ShipmentDate != null);
+                    opt.MapFrom(src => DateOnly.Parse(src.ShipmentDate!));
+                 });
+
             CreateMap<Order, OrderResult>()
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate.ToString("dd.MM.yyyy")))
-                .ForMember(dest => dest.ShipmentDate, opt => opt.MapFrom(src => src.ShipmentDate!.Value.ToString("dd.MM.yyyy")));
+                .ForMember(dest => dest.ShipmentDate, opt =>
+                {
+                    opt.PreCondition((source, dest, ctx) => dest.ShipmentDate != null);
+                    opt.MapFrom(src => src.ShipmentDate!.Value.ToString("dd.MM.yyyy"));
+                });
         }
     }
 }

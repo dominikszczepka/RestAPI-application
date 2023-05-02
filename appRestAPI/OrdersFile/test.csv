@@ -1,3 +1,3 @@
 Number,ClientCode,ClientName,OrderDate,ShipmentDate,Quantity,Confirmed,Value
-abc123,a002,stefan,19.11.2021,22.06.2022,2,TRUE,"23,5"
-abc124,a001,jacek,16.11.2021,25.06.2022,1,FALSE,"1233,2"
+abc123,a002,stefan,19.11.2021,19.11.2021,2,TRUE,"23,5"
+abc124,a001,jacek,16.11.2021,,1,FALSE,"1233,2"
